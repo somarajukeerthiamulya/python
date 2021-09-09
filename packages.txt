@@ -1,0 +1,84 @@
+A package is basically a directory with Python files and a file with the name __init__.py. This means that every directory inside of the Python path, which contains a file named __init__.py, will be treated as a package by Python. It's possible to put several modules into a Package.
+
+Packages are a way of structuring Python’s module namespace by using "dotted module names". A.B stands for a submodule named B in a package named A. Two different packages like P1 and P2 can both have modules with the same name, let's say A, for example. The submodule A of the package P1 and the submodule A of the package P2 can be totally different. A package is imported like a "normal" module.
+We will demonstrate with a very simple example how to create a package with some Python modules. First of all, we need a directory. The name of this directory will be the name of the package, which we want to create. We will call our package "simple_package". This directory needs to contain a file with the name __init__.py. This file can be empty, or it can contain valid Python code. This code will be executed when a package is imported, so it can be used to initialize a package, e.g. to make sure that some other modules are imported or some values set. Now we can put all of the Python files which will be the submodules of our module into this directory. We create two simple files a.py and b.py just for the sake of filling the package with modules.
+
+The content of a.py:
+
+def bar():
+    print("Hello, function 'bar' from module 'a' calling")
+The content of b.py:
+
+def foo():
+    print("Hello, function 'foo' from module 'b' calling")
+We will also add an empty file with the name __init__.py inside of simple_package directory.
+
+Let's see what happens, when we import simple_package from the interactive Python shell, assuming that the directory simple_package is either in the directory from which you call the shell or that it is contained in the search path or environment variable "PYTHONPATH" (from your operating system):
+
+import simple_package
+simple_package/a
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-347df8a711cc> in <module>
+----> 1 simple_package/a
+
+NameError: name 'a' is not defined
+simple_package/b
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-e71d2904d2bd> in <module>
+----> 1 simple_package/b
+
+NameError: name 'b' is not defined
+We can see that the package simple_package has been loaded but neither the module "a" nor the module "b"! We can import the modules a and b in the following way:
+
+from simple_package import a, b
+a.bar()
+b.foo()
+Hello, function 'bar' from module 'a' calling
+Hello, function 'foo' from module 'b' calling
+As we have seen at the beginning of the chapter, we can't access neither "a" nor "b" by solely importing simple_package.
+
+Yet, there is a way to automatically load these modules. We can use the file __init__.py for this purpose. All we have to do is add the following lines to the so far empty file __init__.py:
+
+import simple_package.a
+import simple_package.b
+It will work now:
+import simple_package
+simple_package.a.bar()
+simple_package.b.foo()
+Hello, function 'bar' from module 'a' calling
+Hello, function 'foo' from module 'b' calling
+
+import sound1
+
+print(sound1)
+
+print(sound1.effects)
+
+# Python code to illustrate the Modules
+class Bmw:
+	# First we create a constructor for this class
+	# and add members to it, here models
+	def __init__(self):
+		self.models = ['i8', 'x1', 'x5', 'x6']
+
+	# A normal print function
+	def outModels(self):
+		print('These are the available models for BMW')
+		for model in self.models:
+			print('\t%s ' % model)
+
+# Python code to illustrate the Module
+class Nissan:
+	# First we create a constructor for this class
+	# and add members to it, here models
+	def __init__(self):
+		self.models = ['altima', '370z', 'cube', 'rogue']
+
+	# A normal print function
+	def outModels(self):
+		print('These are the available models for Nissan')
+		for model in self.models:
+			print('\t%s ' % model)
+

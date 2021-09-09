@@ -1,21 +1,14 @@
 #prime number or not_for loop
-
 """
 n=int(input())
 c=0
-for i in range(1,100):
+for i in range(1,n+1):
     if(n%i==0):
         c=c+1
-for j in range(2,i):
-        if(j%i==0):
-            c=c+1
-        if(c==2):
-            print("prime number")
-            break
-        else:
-            print("not prime number")
-            break
-
+if(c==2):
+    print("prime number")
+else:
+    print("not prime number")
 """
 #prime number or not_while loop
 """
@@ -33,7 +26,7 @@ else:
     
 """
 #prime number or not_for loop(range)
-
+"""
 n=int(input())
 m=int(input())
 for i in range(n,m+1):
@@ -44,7 +37,7 @@ for i in range(n,m+1):
             else:
                 print(i)
                 break
-
+"""
 
 #prime number or not_while loop(range)
 """
@@ -107,13 +100,12 @@ for d in range(1,n+1):
     d=n%10
     r=r*10+d
     n=n//10
-#main program
 if(t==r):
     print("palindrome number")
 else:
     print("not palindrome number")
-
 """
+
 #palindrome_while loop
 """
 n=int(input())
@@ -136,7 +128,6 @@ s=0
 for i in range(1,n):
     if(n%i==0):
         s=s+i
-
 if(s==n):
     print("perfect number")
 else:
